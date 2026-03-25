@@ -16,7 +16,7 @@ Amazon's PR/FAQ mechanism was the instrument that forced clarity. Before a singl
 
 ### THE BUILD
 
-The product that launched was not the product that was designed. A/B testing rewrote Rufus's direction multiple times. This is not a failure of planning — it is the intended outcome of a culture that treats data as the final arbiter. The team's job was not to be right; it was to be wrong quickly and cheaply, then iterate towards something that actually worked.
+The product that launched was not the product that was designed at first. A/B testing rewrote Rufus's direction multiple times. This is not a failure of planning — it is the intended outcome of a culture that treats data as the final arbiter. The team's job was not to be right; it was to be wrong quickly and cheaply, then iterate towards something that actually worked.
 
 Scope discipline was the hardest early decision. The instinct when building something new — especially something backed by an LLM with broad capability — is to solve everything at once. The strategic choice was to start narrow: one query type, one use case, done well. That constraint created the conditions for learning. Alexa launched with thirteen skills. Rufus launched with a deliberate focus. Breadth comes later, earned by demonstrating depth.
 
