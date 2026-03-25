@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>From Ideation to Scale: Building AI Products in the Real World</title>
+  <meta name="description" content="A talk grounded in the development of Amazon Rufus — from leadership bet to customer product at scale.">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&family=Maitree:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- WebSlides CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/webslides/WebSlides@1.5.0/static/css/webslides.css">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --dark-bg: #1a1a2e;
+      --accent: #e94560;
+      --accent-light: #ff6b81;
+      --soft-bg: #f0f4f8;
+    }
+    .bg-dark-navy { background-color: var(--dark-bg); color: #fff; }
+    .bg-dark-navy h1, .bg-dark-navy h2, .bg-dark-navy h3,
+    .bg-dark-navy h4, .bg-dark-navy p, .bg-dark-navy li { color: #fff; }
+    .bg-soft { background-color: var(--soft-bg); }
+    .text-accent { color: var(--accent); }
+    .section-number {
+      font-size: 8rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+      font-family: 'Roboto', sans-serif;
+    }
+    .quote-block {
+      font-size: 2.2rem;
+      font-style: italic;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.9);
+      max-width: 800px;
+      margin: 0 auto;
+      font-family: 'Maitree', serif;
+    }
+    .wall-number {
+      font-size: 4.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0;
+    }
+    .lesson-box {
+      background: var(--accent);
+      color: #fff;
+      padding: 1.6rem 2.4rem;
+      border-radius: 8px;
+      margin-top: 2rem;
+      font-size: 1.8rem;
+    }
+    .lesson-box strong { color: #fff; }
+    .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.4rem; }
+    .faq-item { background: #fff; padding: 2.4rem; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+    .faq-item h4 { color: var(--accent); font-size: 1.6rem; margin-bottom: 0.8rem; }
+    .faq-item p { font-size: 1.5rem; color: #444; line-height: 1.6; }
+    .appendix-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6rem; }
+    .appendix-item {
+      display: flex; align-items: flex-start; gap: 1.2rem;
+      background: rgba(255,255,255,0.08); padding: 1.6rem; border-radius: 8px;
+    }
+    .appendix-item i { color: var(--accent); font-size: 2rem; margin-top: 0.3rem; }
+    .appendix-item h4 { margin-bottom: 0.4rem; }
+    .appendix-item p { font-size: 1.4rem; opacity: 0.8; }
+    .icon-circle {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: var(--accent); color: #fff;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 2.4rem; margin-bottom: 1.6rem;
+    }
+    .arc-flow {
+      display: flex; align-items: center; justify-content: center;
+      gap: 0.8rem; flex-wrap: wrap; margin-top: 2.4rem;
+    }
+    .arc-step {
+      background: rgba(233,69,96,0.15); color: var(--accent);
+      padding: 0.6rem 1.4rem; border-radius: 20px;
+      font-size: 1.4rem; font-weight: 500;
+    }
+    .arc-arrow { color: var(--accent); font-size: 1.4rem; }
+    ul.clean-list { list-style: none; padding: 0; }
+    ul.clean-list li {
+      padding: 0.8rem 0; font-size: 1.8rem; line-height: 1.5;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    ul.clean-list li:last-child { border-bottom: none; }
+    ul.clean-list li i { color: var(--accent); margin-right: 1rem; width: 24px; text-align: center; }
+    @media (max-width: 768px) {
+      .faq-grid, .appendix-grid { grid-template-columns: 1fr; }
+      .section-number { font-size: 5rem; }
+      .quote-block { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+<main role="main">
+  <article id="webslides">
+
+    <!-- SLIDE 1: Cover -->
+    <section class="bg-dark-navy aligncenter">
+      <div class="wrap">
+        <p style="font-size:4rem; margin-bottom:1rem;">🎓</p>
+        <h1 class="text-landing" style="font-size:4.8rem;">From Ideation to Scale</h1>
+        <p class="text-subtitle" style="font-size:2.4rem; color:rgba(255,255,255,0.7); margin-top:0.8rem;">Building AI Products in the Real World</p>
+        <hr style="border:1px solid var(--accent); width:100px; margin:2.4rem auto;">
+        <p style="font-size:1.6rem; color:rgba(255,255,255,0.5);">A talk grounded in the development of <strong style="color:var(--accent);">Amazon Rufus</strong></p>
+      </div>
+    </section>
+
+    <!-- SLIDE 2: Opening Hook -->
+    <section class="bg-dark-navy aligncenter">
+      <div class="wrap">
+        <p><i class="fa-solid fa-quote-left" style="font-size:3rem; color:var(--accent); opacity:0.6;"></i></p>
+        <p class="quote-block">
+          "Rufus didn't start with a customer complaint. It started with a leadership bet that LLMs would reshape how people shop. Your job as a PM is to turn a bold vision into something real — and that's where the hard work begins."
+        </p>
+        <div class="arc-flow">
+          <span class="arc-step">Vision</span>
+          <span class="arc-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+          <span class="arc-step">Problem Definition</span>
+          <span class="arc-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+          <span class="arc-step">Build</span>
+          <span class="arc-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+          <span class="arc-step">Launch</span>
+          <span class="arc-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+          <span class="arc-step">Scale</span>
+          <span class="arc-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+          <span class="arc-step">Operate</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: Section Divider — The Journey -->
+    <section class="bg-dark-navy aligncenter">
+      <div class="wrap">
+        <p class="section-number">01</p>
+        <h2 style="font-size:3.6rem;">The Journey</h2>
+        <p class="text-subtitle" style="color:rgba(255,255,255,0.6);">From Leadership Bet to Customer Product</p>
+      </div>
+    </section>
+
+    <!-- SLIDE 4: It Starts with a Vision -->
+    <section>
+      <div class="wrap">
+        <div class="grid sm">
+          <div class="column">
+            <div class="icon-circle"><i class="fa-solid fa-lightbulb"></i></div>
+            <h3>It Starts with a Vision, Not a Roadmap</h3>
+          </div>
+          <div class="column">
+            <ul class="clean-list">
+              <li><i class="fa-solid fa-arrow-up-right-dots"></i> Rufus was a <strong>top-down bet</strong> on LLMs — not a bottom-up product request</li>
+              <li><i class="fa-solid fa-bullseye"></i> The PM's first job: translate the vision into a <strong>concrete problem statement</strong></li>
+              <li><i class="fa-solid fa-file-lines"></i> Amazon's mechanism: <strong>PR/FAQ</strong> forces you to write the customer experience before a line of code — even when leadership has already decided the direction</li>
+            </ul>
+            <div class="lesson-box">
+              <strong>Key Insight:</strong> Writing the press release first forces clarity on <em>who benefits</em> and <em>how</em> — before engineering begins.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: Build Narrow, Learn Fast -->
+    <section class="bg-soft">
+      <div class="wrap">
+        <div class="grid sm">
+          <div class="column">
+            <div class="icon-circle"><i class="fa-solid fa-microscope"></i></div>
+            <h3>Build Narrow, Learn Fast</h3>
+          </div>
+          <div class="column">
+            <ul class="clean-list">
+              <li><i class="fa-solid fa-compress"></i> Rufus launched with a <strong>narrow scope deliberately</strong> — not because of lack of ambition, but strategic discipline</li>
+              <li><i class="fa-solid fa-ranking-star"></i> The #1 lesson: <strong>keep it narrow</strong> — don't try to solve everything at once</li>
+              <li><i class="fa-solid fa-flask-vial"></i> A/B testing drove major direction changes — the product that launched <strong>wasn't the product that was designed</strong></li>
+            </ul>
+            <div class="lesson-box">
+              <strong>Key Insight:</strong> A narrow launch is not a failure of ambition — it's the fastest path to learning what actually matters.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6: UX and Model Are One System -->
+    <section>
+      <div class="wrap aligncenter">
+        <h3 style="font-size:3.2rem;">The UX and the Model Are <span class="text-accent">One System</span></h3>
+        <p class="text-intro" style="max-width:700px; margin:1rem auto 3rem;">The biggest early failure: users didn't know what to ask Rufus. The fix wasn't to retrain the model — it was to redesign the UI.</p>
+        <div class="grid vertical-align">
+          <div class="column">
+            <div class="icon-circle" style="background:#3498db;"><i class="fa-solid fa-palette"></i></div>
+            <h4>UX Problem</h4>
+            <p>Users faced a blank text box and didn't know where to start. Engagement was low.</p>
+          </div>
+          <div class="column">
+            <div class="icon-circle" style="background:#2ecc71;"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+            <h4>UX Solution</h4>
+            <p>Added <strong>suggested prompts</strong> — surfacing examples shaped user behaviour more than any model change.</p>
+          </div>
+          <div class="column">
+            <div class="icon-circle"><i class="fa-solid fa-brain"></i></div>
+            <h4>The Lesson</h4>
+            <p>In AI products, the <strong>interface shapes behaviour</strong> as much as the model does.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7: Section Divider — The 5 Walls -->
+    <section class="bg-dark-navy aligncenter">
+      <div class="wrap">
+        <p class="section-number">02</p>
+        <h2 style="font-size:3.6rem;">The 5 Walls Every AI Product Hits</h2>
+        <p class="text-subtitle" style="color:rgba(255,255,255,0.6);">What "Scale" Actually Means</p>
+        <hr style="border:1px solid rgba(255,255,255,0.15); width:80px; margin:2rem auto;">
+        <p style="font-size:1.6rem; color:rgba(255,255,255,0.5); max-width:600px; margin:0 auto;">
+          <em>"Most AI products don't die at launch. They die between launch and scale."</em>
+        </p>
+        <p style="font-size:1.4rem; color:rgba(255,255,255,0.4); margin-top:1.6rem;">
+          ☕ The café-to-franchise analogy: Your café can be brilliant. Scale means the 500th coffee in a different city tastes the same — without you being there.
+        </p>
+      </div>
+    </section>
+
+    <!-- SLIDE 8: Wall 1 — Technical Scale -->
+    <section>
+      <div class="wrap">
+        <div class="grid sm">
+          <div class="column">
+            <p class="wall-number">01</p>
+            <h3>Technical Scale</h3>
+            <p style="color:#666; font-size:1.5rem;">Latency that holds at millions of requests, not hundreds</p>
+          </div>
+          <div class="column">
+            <ul class="clean-list">
+              <li><i class="fa-solid fa-gauge-high"></i> Rufus had to maintain response quality under <strong>real shopping traffic</strong> — people don't wait</li>
+              <li><i class="fa-solid fa-server"></i> Infrastructure must handle <strong>millions of concurrent requests</strong> without degrading response quality</li>
+              <li><i class="fa-solid fa-clock"></i> Every additional 100ms of latency in e-commerce means <strong>measurable conversion loss</strong></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 9: Wall 2 — Evaluation at Scale -->
+    <section class="bg-soft">
+      <div class="wrap">
+        <div class="grid sm">
+          <div class="column">
+            <p class="wall-number">02</p>
+            <h3>Evaluation at Scale</h3>
+            <p style="color:#666; font-size:1.5rem;">You can't manually review millions of outputs a day</p>
+          </div>
+          <div class="column">
+            <ul class="clean-list">
+              <li><i class="fa-solid fa-users"></i> Rufus used a combination of <strong>human quality raters</strong>, conversion signals, and latency metrics</li>
+              <li><i class="fa-solid fa-chart-line"></i> <strong>Conversion lift</strong> after Rufus interactions became the north star metric — measurable, business-aligned</li>
+              <li><i class="fa-solid fa-robot"></i> You need <strong>automated eval infrastructure</strong> before you need it — build it early</li>
+            </ul>
+            <div class="lesson-box">
+              <strong>Hard Truth:</strong> At millions of queries per day, you can't rely on human review alone. Automated evaluation isn't optional — it's foundational.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 10: Wall 3 — Guardrails -->
+    <section>
+      <div class="wrap">
+        <div class="grid sm">
+          <div class="column">
+            <p class="wall-number">03</p>
+            <h3>Guardrails</h3>
+            <p style="color:#666; font-size:1.5rem;">The Constraint vs. Utility Tension</p>
+          </div>
+          <div class="column">
+            <ul class="clean-list">
+              <li><i class="fa-solid fa-scale-balanced"></i> The hardest internal disagreement: how much to <strong>constrain</strong> what Rufus could say vs. letting it be genuinely <strong>useful</strong></li>
+              <li><i class="fa-solid fa-ban"></i> Too constrained → <strong>useless</strong>. Too open → <strong>brand risk</strong>, wrong answers, regulatory exposure</li>
+              <li><i class="fa-solid fa-arrows-spin"></i> This tension <strong>never fully resolves</strong> — it's a continuous calibration</li>
+              <li><i class="fa-solid fa-earth-europe"></i> Real-world stakes: <strong>GDPR</strong> means what Rufus says about a product in Germany has different legal implications than in the US</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 11: Wall 4 — Rollback & Resilience -->
+    <section class="bg-soft">
+      <div class="wrap">
+        <div class="grid sm">
+          <div class="column">
+            <p class="wall-number">04</p>
+            <h3>Rollback &amp; Resilience</h3>
+            <p style="color:#666; font-size:1.5rem;">When model quality drops in production</p>
+          </div>
+          <div class="column">
+            <ul class="clean-list">
+              <li><i class="fa-solid fa-triangle-exclamation"></i> Rufus experienced a <strong>real model regression</strong> after an update — quality dropped in production</li>
+              <li><i class="fa-solid fa-rotate-left"></i> The rollback worked, but exposed a gap: <strong>evaluation infrastructure</strong> wasn't robust enough to catch it before users</li>
+              <li><i class="fa-solid fa-shield-halved"></i> The fix changed how the team thought about <strong>deployment gates</strong></li>
+            </ul>
+            <div class="lesson-box">
+              <strong>Key Lesson:</strong> Rollback for AI is harder than software — you're not just reverting code, you may be reverting learned behaviour.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 12: Wall 5 — Culture, Language & Market Expansion -->
+    <section>
+      <div class="wrap">
+        <div class="grid sm">
+          <div class="column">
+            <p class="wall-number">05</p>
+            <h3>Culture, Language &amp; Market Expansion</h3>
+            <p style="color:#666; font-size:1.5rem;">Language ≠ Translation</p>
+          </div>
+          <div class="column">
+            <ul class="clean-list">
+              <li><i class="fa-solid fa-flag-usa"></i> Rufus launched <strong>US-first</strong>, then retrofitted other markets</li>
+              <li><i class="fa-solid fa-globe"></i> "Retrofitting" sounds simple — it isn't. Shopping behaviour, query language, trust patterns, and return culture <strong>differ fundamentally</strong> across markets</li>
+              <li><i class="fa-solid fa-language"></i> What reads as helpful in the US can read as <strong>presumptuous in Japan</strong></li>
+              <li><i class="fa-solid fa-lock"></i> <strong>GDPR</strong> and regional data laws mean you can't just copy-paste the US architecture globally</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 13: Section Divider — FAQ -->
+    <section class="bg-dark-navy aligncenter">
+      <div class="wrap">
+        <p class="section-number">03</p>
+        <h2 style="font-size:3.6rem;">Frequently Asked Questions</h2>
+        <p class="text-subtitle" style="color:rgba(255,255,255,0.6);">For Student Q&amp;A</p>
+      </div>
+    </section>
+
+    <!-- SLIDE 14: FAQ Grid -->
+    <section class="bg-soft">
+      <div class="wrap">
+        <div class="faq-grid">
+          <div class="faq-item">
+            <h4><i class="fa-solid fa-circle-question"></i> How do you know when an AI product is ready to ship?</h4>
+            <p>There's no perfect — you define minimum thresholds, then the bar moves as you learn.</p>
+          </div>
+          <div class="faq-item">
+            <h4><i class="fa-solid fa-circle-question"></i> Who owns quality — PM, engineer, or data scientist?</h4>
+            <p>All three. That's the real org design challenge.</p>
+          </div>
+          <div class="faq-item">
+            <h4><i class="fa-solid fa-circle-question"></i> What if the A/B test results are noisy?</h4>
+            <p>You build confidence layers — conversion data, qualitative signals, human eval together.</p>
+          </div>
+          <div class="faq-item">
+            <h4><i class="fa-solid fa-circle-question"></i> How did Amazon balance speed with safety on Rufus?</h4>
+            <p>Constrain scope early, expand carefully — narrow launch is not a failure of ambition.</p>
+          </div>
+          <div class="faq-item">
+            <h4><i class="fa-solid fa-circle-question"></i> What happens when the model gives wrong answers at scale?</h4>
+            <p>Triage → rollback → root cause → fix evaluation gap → redeploy.</p>
+          </div>
+          <div class="faq-item">
+            <h4><i class="fa-solid fa-circle-question"></i> Does GDPR actually stop innovation?</h4>
+            <p>It slows shortcuts, not innovation — good data design handles both.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 15: Appendix & Thank You -->
+    <section class="bg-dark-navy">
+      <div class="wrap">
+        <h2 class="aligncenter" style="margin-bottom:3rem;">Appendix &amp; Reference Material</h2>
+        <div class="appendix-grid">
+          <div class="appendix-item">
+            <i class="fa-solid fa-file-lines"></i>
+            <div>
+              <h4>PR/FAQ Framework</h4>
+              <p>How Amazon works backwards from the customer</p>
+            </div>
+          </div>
+          <div class="appendix-item">
+            <i class="fa-solid fa-layer-group"></i>
+            <div>
+              <h4>Evaluation Stack</h4>
+              <p>Human raters + conversion signals + latency metrics layered together</p>
+            </div>
+          </div>
+          <div class="appendix-item">
+            <i class="fa-solid fa-shield-halved"></i>
+            <div>
+              <h4>Guardrail Risk Tiers</h4>
+              <p>Low / medium / high risk paths in production systems</p>
+            </div>
+          </div>
+          <div class="appendix-item">
+            <i class="fa-solid fa-rotate-left"></i>
+            <div>
+              <h4>Rollback Runbook</h4>
+              <p>Alert → triage → rollback → root cause → communicate</p>
+            </div>
+          </div>
+          <div class="appendix-item">
+            <i class="fa-solid fa-earth-americas"></i>
+            <div>
+              <h4>US-First Expansion Playbook</h4>
+              <p>What retrofitting a market actually involves</p>
+            </div>
+          </div>
+          <div class="appendix-item">
+            <i class="fa-solid fa-gavel"></i>
+            <div>
+              <h4>GDPR &amp; AI Compliance</h4>
+              <p>DPIA, data minimisation, right to deletion, regional pipelines</p>
+            </div>
+          </div>
+        </div>
+        <hr style="border:1px solid rgba(255,255,255,0.1); margin:3rem auto; width:200px;">
+        <p class="aligncenter" style="font-size:2.4rem; margin-bottom:0.5rem;">Thank You</p>
+        <p class="aligncenter" style="font-size:1.4rem; color:rgba(255,255,255,0.4);">Navigate with arrow keys &middot; Press <kbd style="background:rgba(255,255,255,0.1); padding:2px 8px; border-radius:4px;">Esc</kbd> for slide overview</p>
+      </div>
+    </section>
+
+  </article>
+</main>
+
+<!-- WebSlides JS -->
+<script src="https://cdn.jsdelivr.net/gh/webslides/WebSlides@1.5.0/static/js/webslides.min.js"></script>
+<script>
+  window.ws = new WebSlides();
+</script>
+
+</body>
+</html>
