@@ -2,7 +2,7 @@
 
 ## Overview
 
-This repository contains presentation slides used at **Imperial College London** to walk students through a real-world product development journey. The case study follows **Rufus**, Amazon's GenAI-powered shopping assistant — from an initial leadership bet on large language models, through launch, scaling challenges, and global expansion. The slides are built using the [WebSlides](https://webslides.tv/) framework and can be viewed by opening `index.html` in any modern browser.
+This repository contains presentation slides used at **Imperial College London** to walk students through a real-world product development journey. The case study follows **Rufus**, Amazon's GenAI-powered shopping assistant — from an initial leadership bet on large language models, through launch, scaling challenges, and global expansion.
 
 ---
 
